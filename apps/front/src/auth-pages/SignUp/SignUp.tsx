@@ -57,11 +57,18 @@ export default function Initialise() {
 
   return (
     <>
-      <form onSubmit={handleContinue}>
+      <form className="form-signin" onSubmit={handleContinue}>
         {usernameDiv}
-        <Button content="continue" type="submit" color="pink" />
+        <div className="buttons-signin">
+          <Button content="continue" type="submit" color="pink" />
+          <Button
+            content="return"
+            type="button"
+            color="red"
+            onClick={handleReturn}
+          />
+        </div>
       </form>
-      <Button content="return" color="red" onClick={handleReturn} />
     </>
   );
 }

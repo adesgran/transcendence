@@ -1,0 +1,11 @@
+.form-signin {
+	display:flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.form-signin > .buttons-signin{
+	display:flex;
+	flex-direction: row-reverse;
+	justify-content:space-evenly;
+}
