@@ -42,59 +42,61 @@ export class lobby {
     try {
       if (winner.socket.connected) winner.socket.emit('server.win', {winner: winner.user.username});
 
-      const winnerUser = await this.prisma.user.findUnique({
-        where: { username: winner.user.username },
-      });
+      if (this.isCustom == 'normal') {
+        const winnerUser = await this.prisma.user.findUnique({
+          where: { username: winner.user.username },
+        });
 
-      const loserUser = await this.prisma.user.findUnique({
-        where: { username: loser.user.username },
-      });
+        const loserUser = await this.prisma.user.findUnique({
+          where: { username: loser.user.username },
+        });
 
-      if (!winnerUser || !loserUser) {
-        console.error('User not found');
-        return;
-      }
-      if (winnerUser.id === loserUser.id) {
-        return;
-      }
-      const gameMode =
-        winner.mode === 'normal'
-          ? 'NORMAL'
-          : winner.mode === 'custom'
-            ? 'CUSTOM'
-            : 'PRIVATE';
-      const match = await this.prisma.match.create({
-        data: {
-          on_going: false,
-          type: gameMode,
-          players: {
-            createMany: {
-              data: [
-                {
-                  user_id: winnerUser.id,
-                  score:
+        if (!winnerUser || !loserUser) {
+          console.error('User not found');
+          return;
+        }
+        if (winnerUser.id === loserUser.id) {
+          return;
+        }
+        const gameMode =
+          winner.mode === 'normal'
+            ? 'NORMAL'
+            : winner.mode === 'custom'
+              ? 'CUSTOM'
+              : 'PRIVATE';
+        const match = await this.prisma.match.create({
+          data: {
+            on_going: false,
+            type: gameMode,
+            players: {
+              createMany: {
+                data: [
+                  {
+                    user_id: winnerUser.id,
+                    score:
                     this.gameInfo.oneScore > this.gameInfo.twoScore
                       ? this.gameInfo.oneScore
                       : this.gameInfo.twoScore,
-                  winner: true,
-                },
-                {
-                  user_id: loserUser.id,
-                  score:
+                    winner: true,
+                  },
+                  {
+                    user_id: loserUser.id,
+                    score:
                     this.gameInfo.oneScore > this.gameInfo.twoScore
                       ? this.gameInfo.twoScore
                       : this.gameInfo.oneScore,
-                  winner: false,
-                },
-              ],
+                    winner: false,
+                  },
+                ],
+              },
             },
           },
-        },
-      });
-      this.achievements.updateAchievements(winnerUser.id);
-      this.achievements.updateAchievements(loserUser.id);
+        });
+        this.achievements.updateAchievements(winnerUser.id);
+        this.achievements.updateAchievements(loserUser.id);
 
       return match;
+      }
     } catch (error) {
       console.error('Error in win function:', error);
       throw error;

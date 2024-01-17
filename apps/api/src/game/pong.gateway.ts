@@ -82,6 +82,8 @@ export class PongGateway {
       if (polo.status === 'inJoinTab') this.lobbyManager.removeInJoinTab(polo);
       if (polo.status === 'waiting create custom')
         this.lobbyManager.removeToCustomQueue(polo);
+      if (polo.status === 'waiting join private')
+        this.lobbyManager.removeToCustomQueue(polo);
       this.connectedClient.splice(index, 1);
     }
     this.lobbyManager.cleanLobbies();
@@ -160,14 +162,11 @@ export class PongGateway {
 
   @SubscribeMessage('client.createPrivate')
   handlePrivateMatchmaking(client: Socket, id: number) {
-      console.log('test 1');
     const index = this.connectedClient.findIndex((value) => {
       return value.socket === client;
     });
     if (index !== -1) {
-      console.log('test 2');
       this.privateLobbyManager.createPrivate( this.connectedClient[index], id);
-      console.log('test 5');
     }
   }
 
@@ -178,9 +177,7 @@ export class PongGateway {
       return value.socket === client;
     });
     if (index !== -1) {
-      console.log('test 7');
       this.privateLobbyManager.joinPrivate(this.connectedClient[index]);
-      console.log('test 12');
     }
   }
 
@@ -207,13 +204,12 @@ export class PongGateway {
       return value.socket === client;
     });
     if (index !== -1) {
+        this.privateLobbyManager.privateAbort(this.connectedClient[index], null);
       const index2 = this.connectedClient.findIndex((value) => {
         return value.user.id === this.connectedClient[index].lobby.getMatchInfo().userId;
       });
       if (index2 !== -1) {
-        this.privateLobbyManager.removeToPrivateQueue(this.connectedClient[index], this.connectedClient[index2]);
-      } else {
-        this.privateLobbyManager.removeToPrivateQueue(this.connectedClient[index], null);
+        this.privateLobbyManager.privateAbort(this.connectedClient[index], this.connectedClient[index2]);
       }
     }
   }
