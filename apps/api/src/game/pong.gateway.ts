@@ -194,6 +194,7 @@ export class PongGateway {
       return value.socket === client;
     });
     if (index !== -1) {
+        this.privateLobbyManager.privateAbort(this.connectedClient[index], null);
       const index2 = this.connectedClient.findIndex((value) => {
         return (
           value.user.id ===
@@ -201,15 +202,7 @@ export class PongGateway {
         );
       });
       if (index2 !== -1) {
-        this.privateLobbyManager.removeToPrivateQueue(
-          this.connectedClient[index],
-          this.connectedClient[index2],
-        );
-      } else {
-        this.privateLobbyManager.removeToPrivateQueue(
-          this.connectedClient[index],
-          null,
-        );
+        this.privateLobbyManager.privateAbort(this.connectedClient[index], this.connectedClient[index2]);
       }
     }
   }

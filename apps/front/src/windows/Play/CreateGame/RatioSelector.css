@@ -1,0 +1,44 @@
+
+.frame-ratio-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+}
+
+.label-ratio-selector {
+    color: var(--Base-Black, #000);
+    font-family: Chakra Petch;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    min-width : 130px;
+}
+
+.box-ratio-selector {
+    display: flex;
+    width: 40px;
+    height: 20px;
+    padding: 0.5px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--radius-radius-minimal, 4px);
+    border: 1px solid var(--Border-Default, #E6E8F0);
+    background: var(--Base-White, #FFF);
+    /* Ajoutez d'autres styles selon vos besoins */
+}
+
+.box-ratio-selector {
+    display: flex;
+    width: 40px;
+    height: 20px;
+    padding: 2px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--radius-radius-minimal, 4px);
+    border: 1px solid var(--Border-Default, #E6E8F0);
+    background: var(--Base-White, #FFF);
+}
