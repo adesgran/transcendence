@@ -39,46 +39,7 @@
     align-self: flex-end;
 }
 
-.setting-button {
-	cursor: pointer;
-	border-radius: var(--radius-button, 4px);
-	border: 1px solid var(--border-border-outside, #000);
-	background: var(--Purple-Gradient-400, linear-gradient(180deg, #6D559C 66.15%, #4C3778 86.98%));
-
-	/* Text */
-	color: var(--text-text-invert, #FFF);	
-	font-family: Chakra Petch;
-	font-size: 14px;
-	font-style: normal;
-	font-weight: 700;
-	line-height: 14px; /* 100% */
-	letter-spacing: 0.07px;
-
-}
-
-.custom-interface {
-	display: flex;
-	padding: 5px 10px;
-	flex-direction: column;
-	align-items: flex-start;
-	gap: 10px;
-	flex: 1 0 0;
-	align-self: stretch;
-	overflow: scroll;
-}
-
-.custom-game {
-	display: flex;
-	padding: 5px 10px;
-	flex-direction: column;
-	align-items: flex-start;
-	gap: 10px;
-	flex: 1 0 0;
-	align-self: stretch;
-	overflow: scroll;
-}
-
-.custom-powerup {
+.body-custom {
 	display: flex;
 	padding: 5px 10px;
 	flex-direction: column;
@@ -100,28 +61,18 @@
 	align-items: center;
 }
 
-.footer-createcustom .Button {
-	display: flex;
-    align-self: flex-end; 
-	align-items: center;
-}
-
 .div-footer-createcustom {
 	padding : 0 65px 0 0;
 	margin: 0 auto;
 }
 
-.playbutton-footer-createcustom {
+.button-rainbow {
 	display: flex;
     justify-content: center;
     align-items: center;
-	width: 80px;
-	height: 35px;
-	padding: 10px 12px;
+	padding: 5px 8px;
 	cursor: pointer;
-	justify-content: center;
-	align-items: center;
-	border-radius: 12px;
+	border-radius: 8px;
 	outline: 2px solid var(--base-black, #000);
 	border: solid var(--base-white, #fff);
 	border-width: 3px 3px 0;
@@ -133,10 +84,11 @@
 	font-style: normal;
 	font-weight: 700;
 	line-height: 24px;
+	text-transform: uppercase;
 	color: var(--text-text-invert, #FFF);
 }
 
-.playbutton-footer-createcustom:hover {
+.button-rainbow:hover {
 	background: var(--custom-reverse, linear-gradient(114deg, #FFFC9B 9.88%, #09E1C7 33.26%, #3071D2 52.09%, #BBA0E9 72.62%, #FF67BD 93.15%));
 }
 

@@ -25,12 +25,9 @@ export class PongGateway {
     private readonly userService: UserService,
   ) {}
 
-  afterInit() {
-    console.log('gateway initialised');
-  }
+  afterInit() {}
 
   async handleConnection(client: any) {
-    console.log('trying to connect socket...');
     try {
       const payload = await this.authService.checkTokenValidity(
         client.handshake.auth.token,
@@ -41,7 +38,6 @@ export class PongGateway {
       newClient.socket = client;
       newClient.user = user;
       this.connectedClient.push(newClient);
-      console.log('socket connection successfull');
     } catch (ex) {
       console.log('socket connection failed');
       client.emit('connect_failed');
@@ -97,9 +93,6 @@ export class PongGateway {
     if (index !== -1) {
       this.normalLobbyManager.addToNormalQueue(this.connectedClient[index]);
     }
-    this.connectedClient.forEach((value) => {
-      console.log(value.user);
-    });
   }
 
   @SubscribeMessage('client.joinNormalAbort')
@@ -172,7 +165,6 @@ export class PongGateway {
 
   @SubscribeMessage('client.joinPrivate')
   handleJoinMatchmaking(client: Socket, id: number) {
-      console.log('test 6');
     const index = this.connectedClient.findIndex((value) => {
       return value.socket === client;
     });
@@ -206,7 +198,10 @@ export class PongGateway {
     if (index !== -1) {
         this.privateLobbyManager.privateAbort(this.connectedClient[index], null);
       const index2 = this.connectedClient.findIndex((value) => {
-        return value.user.id === this.connectedClient[index].lobby.getMatchInfo().userId;
+        return (
+          value.user.id ===
+          this.connectedClient[index].lobby.getMatchInfo().userId
+        );
       });
       if (index2 !== -1) {
         this.privateLobbyManager.privateAbort(this.connectedClient[index], this.connectedClient[index2]);

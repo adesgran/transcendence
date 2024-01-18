@@ -27,6 +27,9 @@ const AvatarUpload: React.FC<AvatarUploadProps> = ({ winId, targetId }) => {
 			queryClient.invalidateQueries({
 				queryKey: ["user", targetId],
 			});
+			queryClient.invalidateQueries({
+				queryKey: ["profile", targetId],
+			});
 		},
 	});
 

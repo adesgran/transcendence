@@ -11,6 +11,9 @@ export class privateLobbyManager {
     });
     if (index !== -1) {
       client.mode = 'private';
+      if (this.privateLobbies[index].getPlayer()[0].status === 'inGame') {
+        client.socket.emit("server.privateGameError", "This player is already in game");
+      }
       this.privateLobbies[index].getPlayer()[0].status = 'inGame';
       client.status = 'inGame';
       client.lobby = this.privateLobbies[index];
@@ -21,7 +24,6 @@ export class privateLobbyManager {
   }
 
   public createPrivate(client: clientInfo, id: number) {
-    console.log('SIZE: ', this.privateLobbies.length);
     client.status = 'waiting join private';
     client.mode = 'private';
     const newLobby = new lobby('private', {...normalGameInfo, userId: id});

@@ -62,11 +62,6 @@
 	); 
 }
 
-.Ladder > div > .SelfUser:hover {
-	background:
-	linear-gradient(210deg, #2BDEC9 8.97%, #FFF 40.55%, #FFF 49.55%, #FFCAE7 76.04%)
-}
-
 .Ladder > div > .OtherUser {
 	transition: all 1s ease-in-out;
 	background: var(

@@ -1,4 +1,10 @@
-import { NotFoundRoute, RootRoute, Route, Router, redirect } from "@tanstack/react-router";
+import {
+  NotFoundRoute,
+  RootRoute,
+  Route,
+  Router,
+  redirect,
+} from "@tanstack/react-router";
 import App from "./App";
 import Auth from "./auth-pages/Auth";
 import Auth2FA from "./auth-pages/Auth2FA/Auth2FA";
@@ -21,7 +27,7 @@ const indexRoute = new Route({
       });
     }
   },
-})
+});
 
 const appRoute = new Route({
   getParentRoute: () => rootRoute,
@@ -55,6 +61,13 @@ const authSignUpRoute = new Route({
   getParentRoute: () => authRoute,
   path: "/sign-up",
   component: SignUp,
+  beforeLoad: async () => {
+    if (localStorage.getItem("token")) {
+      throw redirect({
+        to: "/auth",
+      });
+    }
+  },
 });
 const authRedirectRoute = new Route({
   getParentRoute: () => rootRoute,
@@ -72,7 +85,7 @@ const authRedirectRoute = new Route({
 const notFoundRoute = new NotFoundRoute({
   getParentRoute: () => rootRoute,
   component: PageNotFound,
-})
+});
 
 const routeTree = rootRoute.addChildren([
   indexRoute,

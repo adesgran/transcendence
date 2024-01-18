@@ -14,7 +14,6 @@ export class WsGuard implements CanActivate {
   ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    console.log('*********************WSGUARD');
     const isPublic = this.reflector.getAllAndOverride<boolean>(IS_PUBLIC_KEY, [
       context.getHandler(),
       context.getClass(),
@@ -30,11 +29,8 @@ export class WsGuard implements CanActivate {
       );
       const user = await this.userService.getUser(payload.id);
       // context.switchToWs().getData().user = user; // save user info to a user object.
-      console.log('WSGUARD OK******************');
       return true;
     } catch (ex) {
-      console.log('WSGUARD FAILED******************');
-      console.log({ex})
       throw new WsException(ex.message);
     }
   }

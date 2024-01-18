@@ -13,6 +13,7 @@
 	font-size: 30px;
 	font-weight: 700;
 	text-transform: uppercase;
+	font-family: "Chakra Petch", sans-serif;
 }
 .signin-btn:hover {
 	background: var(--PinkPurpleMix-Main, #ede6f9);

@@ -29,10 +29,9 @@ export function BanList({ channelId, winId }: BanListProps) {
 		queryFn: async () => {
 			try {
 				const response = await api.get(`/banList/${channelId}`);
-				console.log({ response });
 				return response.data;
 			} catch (error) {
-				store.dispatch(delWindow(winId))
+				store.dispatch(delWindow(winId));
 			}
 		},
 	});

@@ -25,7 +25,6 @@ export class UserChannelModerateService {
       });
 
       if (!selfUser || selfUser.role === 'MEMBER') {
-        console.log(selfUser);
         throw new HttpException(
           'Insufficient privileges to make admin.',
           HttpStatus.FORBIDDEN,

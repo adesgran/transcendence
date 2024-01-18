@@ -140,6 +140,7 @@ function NewChan({winId}: NewChanProps) {
                           dataError?.password ? "errorBorderFormNewChan" : ""
                         }`}
                         placeholder="Type here"
+                        type="password"
                         name="password"
                       ></input>
                       {dataError?.password ? (
@@ -163,6 +164,7 @@ function NewChan({winId}: NewChanProps) {
                             ? "errorBorderFormNewChan"
                             : ""
                         }`}
+                        type="password"
                         placeholder="Type here"
                         name="passwordConfirmation"
                       ></input>

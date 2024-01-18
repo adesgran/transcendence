@@ -38,6 +38,7 @@ export class lobby {
   }
 
   async win(winner: clientInfo, loser: clientInfo) {
+    console.log('test 1');
     try {
       if (winner.socket.connected) winner.socket.emit('server.win', {winner: winner.user.username});
 

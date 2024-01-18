@@ -56,17 +56,16 @@ export class MessageService {
   }
 
   async createMessage(channel_id: number, user_id: number, content: string) {
-    if (content === "/PongInvitation")
-    {
+    if (content === '/PongInvitation') {
       const sendedInvitations = await this.prisma.message.count({
         where: {
           user_id,
           content,
           channel: {
-            type: 'DM'
-          }
-        }
-      })
+            type: 'DM',
+          },
+        },
+      });
       if (sendedInvitations > 0)
         throw new BadRequestException(`Can't send multiple invitations`);
     }
@@ -96,9 +95,9 @@ export class MessageService {
         where: {
           channel: {
             id: channel_id,
-            type: 'DM'
+            type: 'DM',
           },
-          content: "/PongInvitation",
+          content: '/PongInvitation',
           NOT: {
             user_id: id,
           },
@@ -126,10 +125,10 @@ export class MessageService {
       const deletedMessages = await this.prisma.message.deleteMany({
         where: {
           channel: {
-            type: 'DM'
+            type: 'DM',
           },
-          content: "/PongInvitation",
-          user_id: id
+          content: '/PongInvitation',
+          user_id: id,
         },
       });
 
@@ -147,6 +146,18 @@ export class MessageService {
 
       throw new NotFoundException('No invitations found for deletion');
     }
+  }
+
+  async getInvitationChannel(user_id: number) {
+    const message = await this.prisma.message.findFirst({
+      where: {
+        user_id,
+        content: '/PongInvitation',
+      },
+    });
+    if (!message)
+      throw new NotFoundException('No invitations found for deletion');
+    return message.channel_id;
   }
 
   private messageEvents = new Subject<any>();

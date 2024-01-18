@@ -148,7 +148,6 @@ export class UserChannelController {
     @CurrentUserID() selfId: number,
   ) {
     try {
-      console.log(body);
       const { data } = body;
 
       if (!data || !data.targetId || !data.channelId) {

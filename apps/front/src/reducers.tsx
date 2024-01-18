@@ -75,6 +75,7 @@ const windowsSlice = createSlice({
 				"TWOFAQRCODE",
 				"FRIENDSLIST",
 				"PLAY",
+				"CHATSESSION",
 			];
 
 			if (

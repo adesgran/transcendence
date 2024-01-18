@@ -50,10 +50,7 @@
 	margin-bottom: 10px;
 	display: flex;
 	flex-direction: row;
-	background: var(
-		--Turquoise-Gradient-500,
-		linear-gradient(180deg, #13998d 68.23%, #106f66 88.19%)
-	);
+	background: linear-gradient(180deg, #2ED8C4 66.15%, #2DBDAF 86.98%);
 	gap: 6px;
 	padding: 8px 10px 8px 6px;
 	border-radius: 6px;

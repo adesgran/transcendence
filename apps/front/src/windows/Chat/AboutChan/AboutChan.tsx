@@ -194,7 +194,7 @@ function AboutChan({ chanId, winId }: AboutChanProps) {
           <div className="text-400">{channel?.userChannels.length} members</div>
         </div>
 
-        {!isMember ? (
+        {!isMember && channel?.type !== "PRIVATE" ? (
           <div className="headerButtonsAboutChan">
             <Button
               color="purple"

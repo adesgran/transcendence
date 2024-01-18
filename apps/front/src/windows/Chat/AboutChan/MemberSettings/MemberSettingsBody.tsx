@@ -55,7 +55,7 @@ export function MemberSettingsBody({
     },
   });
 
-  const handleMute = () => {
+  const handleMute = async () => {
     let muteTimeInSeconds;
     if (!muteTime || parseInt(muteTime, 10) === 0) {
       muteTimeInSeconds = 42 * 365 * 24 * 60 * 60;
@@ -77,7 +77,10 @@ export function MemberSettingsBody({
 
     const currentDate = new Date();
     const endDate = new Date(currentDate.getTime() + muteTimeInSeconds * 1000);
-    muteUser(endDate);
+    await muteUser(endDate);
+    queryClient.invalidateQueries({
+      queryKey: ["memberSettings", channelId, user.id],
+    });
   };
 
   const handleUnmute = () => {
@@ -126,7 +129,7 @@ export function MemberSettingsBody({
             date={user.mutedUntil}
             onComplete={() =>
               queryClient.invalidateQueries({
-                queryKey: ["memberSettings", user.id, channelId],
+                queryKey: ["memberSettings", channelId, user.id],
               })
             }
           />

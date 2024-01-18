@@ -26,9 +26,6 @@ import { useEffect, useMemo, useState } from "react";
 import { EventSourcePolyfill } from "event-source-polyfill";
 import api from "../../axios";
 import store from "../../store";
-import Pong from "../../windows/Play/Pong/Pong";
-import CreateCustom from "../../windows/Play/CreateGame/CreateCustom";
-import JoinCustom from "../../windows/Play/JoinGame/JoinCustom";
 import MainGameMenu from "../../windows/Play/MainGameMenu/mainGameMenu";
 import Preview from "../../windows/Play/Preview/Preview";
 

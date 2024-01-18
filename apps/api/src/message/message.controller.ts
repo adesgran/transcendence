@@ -62,13 +62,18 @@ export class MessageController {
   }
 
   @Delete('/message/receivedinvitation/:channel_id')
-  async deleteReceivedInvitation(@Param('channel_id') channel_id: number, @CurrentUserID() user_id: number) {
+  async deleteReceivedInvitation(
+    @Param('channel_id') channel_id: number,
+    @CurrentUserID() user_id: number,
+  ) {
     this.messageService.emitMessage(channel_id);
     return this.messageService.deleteReceivedInvitation(user_id, channel_id);
   }
 
   @Delete('/message/sendedinvitation')
   async deleteSendedInvitation(@CurrentUserID() user_id: number) {
+    const channel_id = await this.messageService.getInvitationChannel(user_id);
+    this.messageService.emitMessage(channel_id);
     return this.messageService.deleteSendedInvitation(user_id);
   }
 }

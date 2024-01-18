@@ -9,7 +9,7 @@ export function GameEnd({ isVictorious }: GameEndProps) {
     <>
       <div className="title-game-end">
         <div className={`label-${isVictorious ? "victory" : "defeat"}`}>
-          {isVictorious ? "You Won" : "You Lost"}
+          {isVictorious ? "Victory" : "Defeat"}
         </div>
       </div>
     </>

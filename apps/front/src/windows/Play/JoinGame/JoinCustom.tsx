@@ -25,7 +25,6 @@ export default function JoinCustom(props: joinCustomProps) {
 		}
 		function onLobbiesDelete(lol: gameInfoDto) {
 			const index = lobbies.findIndex((value) => {
-				console.log("val", value.name, "lol", lol.name);
 				return value.name === lol.name;
 			});
 			if (index !== -1) {

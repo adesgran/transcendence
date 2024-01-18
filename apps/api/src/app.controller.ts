@@ -12,8 +12,7 @@ export class AppController {
   } */
   @Get()
   root() {
-    console.log('Trying to acces root');
-    return { message: 'Hiiiii' };
+    return { message: "Je s'appelle Root" };
   }
 
   @Get('/id')

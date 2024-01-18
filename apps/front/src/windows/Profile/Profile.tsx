@@ -161,6 +161,9 @@ export function Profile({ targetId, winId }: ProfileProps) {
       });
       queryClient.invalidateQueries({ queryKey: ["pendingRequests"] });
       queryClient.invalidateQueries({ queryKey: ["friendsList"] });
+      queryClient.invalidateQueries({
+        queryKey: ["profile", targetId],
+      });
     },
   });
 
@@ -597,7 +600,7 @@ export function Profile({ targetId, winId }: ProfileProps) {
 						</div>
 					</div>
 					<div className="ProfileAchievements" onClick={() => handleOpenAchievements()}>
-						<div style={{ paddingRight: "4px" }}>	
+						<div className="AchievementLink">	
 							Achievements lvl. {profile?.achievement_lvl}	
 						</div>
 					</div>
@@ -610,7 +613,7 @@ export function Profile({ targetId, winId }: ProfileProps) {
 						<div className="Count">
 							{historic?.matchHistory.length === historic?.length
 								? `MATCH HISTORY (${historic?.matchHistory.length}/${historic?.length})`
-								: `MATCH HISTORY (LATEST ${historic?.matchHistory.length}) (${historic?.matchHistory.length}/${historic?.length})`}
+								: `MATCH HISTORY (${historic?.matchHistory.length}/${historic?.length})`}
 						</div>
 
             {historic?.matchHistory.map((match) => {

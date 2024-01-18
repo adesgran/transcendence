@@ -12,7 +12,7 @@ async function createUsers() {
     const user = {
       username: faker.internet.userName(),
       avatar_url: faker.image.avatar(),
-      id_42: faker.number.int({ min: 0, max: 10000 }),
+      id_42: faker.number.int({ min: 0, max: 1000000 }),
       token_42: faker.string.alphanumeric(20),
       secret_2fa: faker.string.alphanumeric(20),
       is_enable_2fa: false,
@@ -100,29 +100,6 @@ async function createDMs() {
   }
 }
 
-async function createMessages() {
-  const amountOfMessages = 100;
-
-  const messages = [];
-
-  for (let i = 0; i < amountOfMessages; i++) {
-    const message = {
-      user_id: faker.number.int({ min: 1, max: 50 }),
-      channel_id: faker.number.int({ min: 1, max: 15 }),
-      content: faker.lorem.sentences({ min: 1, max: 3 }),
-      created_at: faker.date.past(),
-      updated_at: faker.date.recent(),
-    };
-
-    messages.push(message);
-  }
-
-  const addMessages = async () =>
-    await prisma.message.createMany({ data: messages });
-
-  addMessages();
-}
-
 async function createUserAchievements() {
   const userPool = await prisma.user.findMany();
 
@@ -199,12 +176,12 @@ async function createMatches() {
             data: [
               {
                 user_id: userA.id,
-                score: faker.number.int({ min: 0, max: 11 }),
+                score: faker.number.int({ min: 0, max: 9 }),
                 winner: faker.datatype.boolean(),
               },
               {
                 user_id: userB.id,
-                score: faker.number.int({ min: 0, max: 11 }),
+                score: faker.number.int({ min: 0, max: 9 }),
                 winner: faker.datatype.boolean(),
               },
             ],
@@ -215,7 +192,7 @@ async function createMatches() {
   }
 }
 
-async function createFirendships() {
+async function createFriendships() {
   const amountOfFriendships = 200;
   const userPool = await prisma.user.findMany();
   const friendships = [];
@@ -256,10 +233,9 @@ async function main() {
   await createUsers();
   await createDMs();
   await createChannels();
-  await createMessages();
   await createUserAchievements();
   await createMatches();
-  await createFirendships();
+  await createFriendships();
   console.log('Seed complete!');
 }
 

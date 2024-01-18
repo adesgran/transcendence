@@ -107,7 +107,6 @@ export default function Ladder({ targetId, winId }: LadderProps) {
 	}
 
 	const handleOpenProfile = (id: number, username: string) => {
-		console.log("User ID : ", id);
 		const newWindow = {
 			WindowName: username,
 			width: "400",

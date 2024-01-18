@@ -425,3 +425,15 @@
 		url("../../../public/crown.png"),
 		lightgray -5.034px -8.481px / 133.333% 160% no-repeat;
 }
+
+.AchievementLink {
+	padding-right: 4px;
+}
+
+.AchievementLink:hover {
+	text-decoration: underline;
+}
+
+.Position:hover {
+	text-decoration: underline;
+}

@@ -1,5 +1,5 @@
 import {
-    IsHexColor,
+  IsHexColor,
   IsInt,
   IsOptional,
   IsString,
@@ -72,7 +72,6 @@ class BarSpeedConstraint implements ValidatorConstraintInterface {
   }
 }
 
-
 export class gameInfoDto {
   @IsOptional()
   @IsInt()
@@ -99,7 +98,6 @@ export class gameInfoDto {
   @IsInt()
   @Validate(BallSizeConstraint)
   ballSize?: number = 10;
-
 
   @IsOptional()
   @IsInt()
@@ -162,7 +160,7 @@ export class gameInfoDto {
   // not in setting
   @IsOptional()
   @IsString()
-  name?: string = 'normal';
+  name?: string = 'My Custom Game';
 
   @IsOptional()
   @IsInt()

@@ -6,18 +6,15 @@
   align-self: stretch;
   border-bottom: 1px solid var(--base-black, #000);
   background: linear-gradient(180deg, #6d559c 66.15%, #4c3778 86.98%);
-  font-size:9px;
   align-items: center;
-  cursor: default;
 }
 
 #Navbar > div {
   display: flex;
   align-items: center;
-  gap: 1.5vw ;
-  flex: 1 0 0;
-  min-width: 200px;
-
+  flex-direction:row;
+  gap: 15px ;
+  min-width: 470px;
 }
 
 .DecoButton {
@@ -42,19 +39,15 @@
   border-color: var(--Pink-Gradient-400, #F06E8D);
 }
 
-@media screen and (max-width: 490px) {
-  #Navbar > div {
-    display: none; 
-  }
-  #DecoButton {
-    justify-content: flex-end;
+@media screen and (max-width: 570px) {
+  .NavButton {
+    font-size: 0.9em !important;
   }
 }
 
 .NavButton {
   cursor: pointer;
   padding: 0em 0.3em;
-  /* width: 20px; */
   /* Style */
   background: var(
     --PinkPurpleMix-Gradient-Main,
@@ -64,20 +57,16 @@
   border: solid var(--base-white, #fff);
   border-width: 0.2em 0.1em 0;
   outline: 0.2em solid var(--base-black, #000);
+  display:flex;
+  align-items: center;
+  justify-content: center;
   /* Font */
   font-family: Chakra Petch;
-  font-size: 2.3em;
+  font-size: 1.5em;
   font-weight: 700;
-  margin-right: 3px;
 }
 
 .NavButton:hover {
 	background: var(--PinkPurpleMix-Main, #ede6f9);
 	border-color: var(--PinkPurpleMix-Main, #ede6f9);
 }
-
-/* @media only screen and (max-width: 768px) {
-	.NavButton > div > div {
-		font-size: 80%;
-	}
-} */

@@ -1,7 +1,4 @@
-@font-face {
-	font-family: "Chakra Petch";
-	src: url("https://fonts.cdnfonts.com/css/chakra-petch");
-}
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap");
 
 html,
 body,

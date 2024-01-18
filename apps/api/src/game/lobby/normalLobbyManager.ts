@@ -29,7 +29,6 @@ export class normalLobbyManager {
 
   private MATCH() {
     if (this.normalQueue.length >= 2) {
-      console.log('arg');
       const playerOne = this.normalQueue.shift();
       const playerTwo = this.normalQueue.shift();
       const newLobby = new lobby('normal', null);
