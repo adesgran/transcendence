@@ -11,7 +11,6 @@ import { UserModule } from 'src/user/user.module';
   controllers: [ChannelController],
   providers: [
     ChannelService,
-    PrismaService,
     UserChannelService,
     MessageService,
     FriendshipService,

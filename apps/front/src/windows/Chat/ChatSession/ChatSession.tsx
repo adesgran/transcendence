@@ -191,7 +191,7 @@ function ChatSession({ channelId, winId }: ChatSessionProps) {
     if (chat?.type === "DM") {
       detailsWindow(true, chat?.interlocutor.id, chat.interlocutor.username);
     } else {
-      detailsWindow(false, chat?.id || -1, chat?.name || "");
+      detailsWindow(false, chat?.id || 0, chat?.name || "");
     }
   };
 
@@ -208,7 +208,9 @@ function ChatSession({ channelId, winId }: ChatSessionProps) {
 
   const resetTextareaSize = () => {
     const minHeight = 30;
-	const textarea = document.querySelector('.typeBarChatSession') as HTMLTextAreaElement;
+    const textarea = document.querySelector(
+      ".typeBarChatSession"
+    ) as HTMLTextAreaElement;
     if (textarea) {
       textarea.style.height = `${minHeight}px`;
     }
@@ -296,27 +298,23 @@ function ChatSession({ channelId, winId }: ChatSessionProps) {
     store.dispatch(addWindow(newWindow));
   };
 
-	const pendingGameRequest = () => {
-		if (receivedInvitation)
-			return (
-				<div className="PendingGameRequest">
-					<div className="Text">
-						{receivedInvitation.username} sent you a game request
-					</div>
-					<Button
-						color="pink"
-						icon="Check"
-						onClick={handleAcceptGameRequest}
-					/>
-					<Button
-						color="red"
-						icon="WhiteClose"
-						onClick={handleRejectGameRequest}
-					/>
-				</div>
-			);
-		else return null;
-	};
+  const pendingGameRequest = () => {
+    if (receivedInvitation)
+      return (
+        <div className="PendingGameRequest">
+          <div className="Text">
+            {receivedInvitation.username} sent you a game request
+          </div>
+          <Button color="pink" icon="Check" onClick={handleAcceptGameRequest} />
+          <Button
+            color="red"
+            icon="WhiteClose"
+            onClick={handleRejectGameRequest}
+          />
+        </div>
+      );
+    else return null;
+  };
 
   const handleEndCountdown = () => {
     queryClient.invalidateQueries({

@@ -168,7 +168,7 @@ export class UserChannelService {
   }
 
   async updateReadUntil(user_id: number, channel_id: number) {
-    if (!channel_id) {
+    if (!channel_id || channel_id <= 0) {
       this.logAndThrowNotFound(channel_id, 'Channel');
     }
     if (!user_id) {

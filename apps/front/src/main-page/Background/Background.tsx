@@ -128,7 +128,7 @@ export default function Background() {
 		queryKey: ["userChannelNames"],
 		queryFn: async () => {
 			return api.get("/chats").then((response) => {
-				checkWindows();
+				checkWindows(response.data);
 				return response.data;
 			});
 		},
@@ -160,14 +160,14 @@ export default function Background() {
 		windows.forEach((window) => store.dispatch(delWindow(window.id)));
 	};
 
-	const checkWindows = () => {
+	const checkWindows = (channels) => {
 		const windows = store.getState().windows;
 		const windowsToDel = windows.filter(
 			(window) =>
-				(userChannelNames?.filter((el) => el.id === window.content.id)
+				(channels.filter((el) => el.id === window.content.id)
 					.length <= 0 &&
 					window.content.type === "CHATSESSION") ||
-				(userChannelNames?.filter((el) => el.id === window.content.id)
+				(channels.filter((el) => el.id === window.content.id)
 					.length <= 0 &&
 					window.content.type === "ABOUTCHAN")
 		);
@@ -329,6 +329,7 @@ export default function Background() {
 				});
 				break;
 			case UserEventType.KICKFROMCHAN:
+				queryClient.invalidateQueries({});
 				queryClient.invalidateQueries({
 					queryKey: ["chats"],
 				});
@@ -340,6 +341,7 @@ export default function Background() {
 				});
 				break;
 			case UserEventType.BANFROMCHAN:
+				queryClient.invalidateQueries({});
 				queryClient.invalidateQueries({
 					queryKey: ["chats"],
 				});

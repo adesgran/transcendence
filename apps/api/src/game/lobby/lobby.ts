@@ -231,7 +231,7 @@ export class lobby {
       prisma,
     ),
   ) {
-    this.prisma = new PrismaService();
+    //this.prisma = new PrismaService();
     this.isCustom = isCustom;
     if (this.isCustom == 'private') {
       this.defaultGameInfo = { ...normalGameInfo, userId: matchInfo.userId };

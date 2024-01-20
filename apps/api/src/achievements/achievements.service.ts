@@ -184,34 +184,6 @@ export class AchievementsService {
     }
   }
 
-  async checkLastTenGamesWin(userId: number): Promise<boolean> {
-    if (!userId) {
-      throw new NotFoundException(`User with ID ${userId} not found`);
-    }
-    try {
-      const lastTenGames = await this.prisma.matchPlayer.findMany({
-        where: {
-          user_id: userId,
-          match: {
-            type: 'NORMAL',
-          },
-        },
-        orderBy: {
-          created_at: 'desc',
-        },
-        take: 10,
-      });
-
-      if (lastTenGames.length < 10) return false;
-
-      const allWins = lastTenGames.every((game) => game.winner);
-
-      return allWins;
-    } catch (error) {
-      throw new Error(`Error checking last ten games: ${error.message}`);
-    }
-  }
-
   async updateAchievements(userId: number) {
     try {
       const user = await this.prisma.user.findUnique({
@@ -238,10 +210,6 @@ export class AchievementsService {
       }
       if (!user.achievement.some((ua) => ua.achievement === 'WINS10PLUS')) {
         if (winCount >= 10) this.addAchievement(userId, 'WINS10PLUS');
-      }
-      if (!user.achievement.some((ua) => ua.achievement === 'WIN10RAW')) {
-        if (this.checkLastTenGamesWin(userId))
-          this.addAchievement(userId, 'WIN10RAW');
       }
     } catch (error) {
       console.log(error);

@@ -1,7 +1,7 @@
 import { Button } from "../../shared/ui-components/Button/Button";
 import "./Profile.css";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import api from "../../axios";
+import api, { apiWoInterceptor } from "../../axios";
 import List from "../../shared/ui-components/List/List";
 import { HBButton, WinColor } from "../../shared/utils/WindowTypes";
 import { addWindow, delWindow } from "../../reducers";
@@ -103,7 +103,7 @@ export function Profile({ targetId, winId }: ProfileProps) {
 
   const { mutateAsync: setUsername, error: setUsernameError } = useMutation({
     mutationFn: async (formData) => {
-      return api.post("/user/username", formData).catch((error: AxiosError) => {
+      return apiWoInterceptor.post("/user/username", formData).catch((error: AxiosError) => {
         if (error.response?.status === 400) {
           throw error.response?.data as ValidationErrorResponse;
         } else

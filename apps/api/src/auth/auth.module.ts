@@ -15,7 +15,6 @@ import { UserService } from 'src/user/user.service';
     AuthService,
     TwoFAService,
     UserService,
-    PrismaService,
     {
       provide: APP_GUARD,
       useClass: AuthGuard,

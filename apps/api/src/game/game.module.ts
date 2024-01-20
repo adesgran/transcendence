@@ -5,7 +5,6 @@ import { JwtService } from '@nestjs/jwt';
 import { WsGuard } from './ws.guard';
 import { AuthService } from 'src/auth/auth.service';
 import { UserService } from 'src/user/user.service';
-import { PrismaService } from 'src/prisma.service';
 import { AchievementsService } from 'src/achievements/achievements.service';
 
 @Module({
@@ -21,7 +20,6 @@ import { AchievementsService } from 'src/achievements/achievements.service';
     WsGuard,
     AuthService,
     UserService,
-    PrismaService,
     AchievementsService,
   ],
 })

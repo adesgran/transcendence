@@ -80,7 +80,7 @@ export class MessageService {
 
       if (receivedInvitations > 0)
         throw new BadRequestException(
-          `This user have already sended you an invitation`,
+          `This user has already sent you an invitation`,
         );
     }
     if (!channel_id || !user_id) {
@@ -89,7 +89,7 @@ export class MessageService {
       );
       throw new BadRequestException(`Missing property for message creation`);
     }
-    
+
     if (!content) {
       return undefined;
     }
@@ -157,6 +157,7 @@ export class MessageService {
         throw new NotFoundException('No invitations found');
       }
     } catch (error) {
+
       console.error('Error deleting invitations:', error);
 
       if (error instanceof Prisma.PrismaClientKnownRequestError) {

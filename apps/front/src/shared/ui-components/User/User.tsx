@@ -179,7 +179,7 @@ export function User({ userId, channel }: UserProps) {
     const newWindow = {
       WindowName: user?.username || "",
       id: 0,
-      content: { type: "CHATSESSION", id: updatedDmId || -1 },
+      content: { type: "CHATSESSION", id: updatedDmId || 0 },
       toggle: false,
       handleBarButton: HBButton.Close + HBButton.Enlarge + HBButton.Reduce,
       color: WinColor.PURPLE,

@@ -109,7 +109,7 @@ export class AuthController {
     return { url: `${process.env.DOMAIN_NAME_FRONT}/redirect/${token}` };
   }
 
-// @Public() 
+// @Public()
 // @Redirect()
 // @Get('/impersonate/:id')
 // async impersonateUser(@Param('id') id: number) {
